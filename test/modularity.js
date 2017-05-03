@@ -58,8 +58,8 @@ describe('modularity', function() {
 
   it('should throw if given graph is multi.', function() {
     assert.throws(function() {
-      modularity(new Graph(null, {multi: true}), []);
-    }, /graphology/);
+      modularity(new Graph({multi: true}), []);
+    }, /multi/);
   });
 
   it('should throw if the given graph has no edges.', function() {
@@ -68,7 +68,7 @@ describe('modularity', function() {
 
     assert.throws(function() {
       modularity(graph, [[1], [2]]);
-    }, /graphology/);
+    }, /edge/);
   });
 
   it('should throw if a node is not in the given partition.', function() {
@@ -80,7 +80,7 @@ describe('modularity', function() {
 
     assert.throws(function() {
       modularity(graph, {communities: {1: 0, 2: 0}});
-    }, /graphology/);
+    }, /partition/);
   });
 
   it('should handle unique partitions of cliques.', function() {
