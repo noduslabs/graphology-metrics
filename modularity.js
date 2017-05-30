@@ -86,6 +86,7 @@ function modularity(graph, options) {
     bounds = graph.extremities(edge);
     node1 = bounds[0];
     node2 = bounds[1];
+
     if (node1 === node2)
       continue;
 
