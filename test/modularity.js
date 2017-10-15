@@ -1,6 +1,6 @@
 /**
- * Graphology Utils Unit Tests
- * ============================
+ * Graphology Modularity Unit Tests
+ * =================================
  */
 var assert = require('chai').assert,
     Graph = require('graphology'),
