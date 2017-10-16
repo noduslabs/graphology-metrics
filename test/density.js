@@ -39,9 +39,22 @@ describe('density', function() {
     undirectedGraph.addEdge(1, 2);
     undirectedGraph.addEdge(1, 3);
 
-    // TODO: mixed density is incorrect => need #.directedSize etc.
-    // console.log(density(mixedGraph));
-    // console.log(density(directedGraph));
-    // console.log(density(undirectedGraph));
+    var multiGraph = new Graph({type: 'undirected', multi: true});
+    multiGraph.addNodesFrom([1, 2, 3]);
+    multiGraph.addEdge(1, 2);
+    multiGraph.addEdge(1, 3);
+    multiGraph.addEdge(1, 3);
+    multiGraph.addEdge(1, 3);
+
+    assert.strictEqual(density(mixedGraph), 2 / 9);
+    assert.strictEqual(density(directedGraph), 2 / 6);
+    assert.strictEqual(density(undirectedGraph), 2 / 3);
+    assert.strictEqual(density(multiGraph), 4 / 3);
+    assert.strictEqual(density.undirectedDensity(multiGraph), 2 / 3);
+
+    assert.strictEqual(density.mixedDensity(mixedGraph.order, mixedGraph.size), 2 / 9);
+    assert.strictEqual(density.directedDensity(directedGraph.order, directedGraph.size), 2 / 6);
+    assert.strictEqual(density.undirectedDensity(undirectedGraph.order, directedGraph.size), 2 / 3);
+    assert.strictEqual(density.multiUndirectedDensity(multiGraph.order, multiGraph.size), 4 / 3);
   });
 });

@@ -12,11 +12,50 @@ npm install graphology-metrics
 
 ## Usage
 
+* [Density](#density)
 * [Modularity](#modularity)
+
+### Density
+
+Computes the density of the given graph.
+
+```js
+import {density} from 'graphology-metrics';
+import density from 'graphology-metrics/density';
+
+// Passing a graph instance
+const d = density(graph);
+
+// Passing the graph's order & size
+const d = density(order, size);
+
+// Or to force the kind of density being computed
+import {
+  mixedDensity,
+  directedDensity,
+  undirectedDensity,
+  multiMixedDensity,
+  multiDirectedDensity,
+  multiUndirectedDensity
+} from 'graphology-metric/density';
+
+const d = undirectedDensity(mixedGraph);
+```
+
+*Arguments*
+
+Either:
+
+* **graph** *Graph*: target graph.
+
+Or:
+
+* **order** *number*: number of nodes in the graph.
+* **size** *number*: number of edges in the graph.
 
 ### Modularity
 
-Compute the modularity, given the graph and a partitioning
+Computes the modularity, given the graph and a partitioning
 
 ```js
 import {modularity} from 'graphology-metrics';

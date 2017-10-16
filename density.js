@@ -36,10 +36,12 @@ function directedDensity(order, size) {
  * @return {number}
  */
 function mixedDensity(order, size) {
-  var u = undirectedDensity(order, size),
-      d = directedDensity(order, size);
+  var d = (order * (order - 1));
 
-  return (u + d) / 2;
+  return (
+    size /
+    (d + d / 2)
+  );
 }
 
 /**
