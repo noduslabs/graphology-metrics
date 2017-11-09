@@ -12,8 +12,15 @@ npm install graphology-metrics
 
 ## Usage
 
+*Graph metrics*
+
 * [Density](#density)
 * [Modularity](#modularity)
+
+*Node metrics*
+
+* [Centrality](#centrality)
+  - [Degree centrality](#degree-centrality)
 
 ### Density
 
@@ -80,3 +87,30 @@ const Q = modularity(graph, {
     * **community** *?string* [`community`]: name of the nodes' community attribute in case we need to read them from the graph itself.
     * **weight** *?string* [`weight`]: name of the edges' weight attribute.
 
+### Centrality
+
+#### Degree centrality
+
+Computes the degree centrality for every node.
+
+```js
+import degreeCentrality from 'graphology-metrics/centrality/degree';
+// Or to load more specific functions:
+import {
+  degreeCentrality,
+  inDegreeCentrality,
+  outDegreeCentrality
+} from 'graphology-metrics/centrality/degree';
+
+// To get centralities for every node:
+const centralities = degreeCentrality(graph);
+
+// To directly map the result unto nodes' attributes:
+degreeCentrality.assign(graph);
+```
+
+*Arguments*
+
+* **graph** *Graph*: target graph.
+* **options** *?object*: options:
+  * **attribute** *?string*: name of the centrality attribute.
