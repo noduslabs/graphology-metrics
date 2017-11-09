@@ -17,6 +17,7 @@
     "url": "git+https://github.com/graphology/graphology-metrics.git"
   },
   "keywords": [
+    "centrality",
     "density",
     "graph",
     "graphology",
