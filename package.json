@@ -4,10 +4,11 @@
   "description": "Miscellaneous graph metrics for graphology.",
   "main": "index.js",
   "files": [
+    "centrality",
     "*.js"
   ],
   "scripts": {
-    "lint": "eslint *.js test/*.js",
+    "lint": "eslint *.js centrality/*.js test/*.js",
     "prepublish": "npm run lint && npm test",
     "test": "mocha test"
   },
