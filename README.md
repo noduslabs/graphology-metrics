@@ -105,8 +105,11 @@ import {
 // To get centralities for every node:
 const centralities = degreeCentrality(graph);
 
-// To directly map the result unto nodes' attributes:
+// To directly map the result onto nodes' attributes (`degreeCentrality`):
 degreeCentrality.assign(graph);
+
+// To directly map the result onto a custom attribute:
+degreeCentrality.assign(graph, {attribute: 'myCentrality'});
 ```
 
 *Arguments*
