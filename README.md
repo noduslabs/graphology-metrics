@@ -15,6 +15,7 @@ npm install graphology-metrics
 *Graph metrics*
 
 * [Density](#density)
+* [Extent](#extent)
 * [Modularity](#modularity)
 
 *Node metrics*
@@ -59,6 +60,33 @@ Or:
 
 * **order** *number*: number of nodes in the graph.
 * **size** *number*: number of edges in the graph.
+
+### Extent
+
+Computes the extent - min, max - of a nodes or edges' attribute.
+
+```js
+import extent from 'graphology-metrics/extent';
+
+// Retrieving a single node attribute's extent
+extent(graph, 'size');
+>>> [1, 34]
+
+// Retrieving multiple node attributes' extents
+extent(graph, ['x', 'y']);
+>>> {x: [-4, 3], y: [-34, 56]}
+
+// For edges
+extent.edgeExtent(graph, 'weight');
+>>> [0, 5.7]
+```
+
+*Arguments*
+
+Either:
+
+* **graph** *Graph*: target graph.
+* **attributes** *string|array*: single attribute names or array of attribute names.
 
 ### Modularity
 
