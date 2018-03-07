@@ -63,7 +63,7 @@ Or:
 
 ### Extent
 
-Computes the extent - min, max - of a nodes or edges' attribute.
+Computes the extent - min, max - of a node or edge's attribute.
 
 ```js
 import extent from 'graphology-metrics/extent';
@@ -82,8 +82,6 @@ extent.edgeExtent(graph, 'weight');
 ```
 
 *Arguments*
-
-Either:
 
 * **graph** *Graph*: target graph.
 * **attributes** *string|array*: single attribute names or array of attribute names.
