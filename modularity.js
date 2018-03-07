@@ -42,13 +42,13 @@ function modularity(graph, options) {
 
   // Handling errors
   if (!isGraph(graph))
-    throw new Error('graphology-modularity: the given graph is not a valid graphology instance.');
+    throw new Error('graphology-metrics/modularity: the given graph is not a valid graphology instance.');
 
   if (graph.multi)
-    throw new Error('graphology-louvain: multi graphs are not handled.');
+    throw new Error('graphology-metrics/modularity: multi graphs are not handled.');
 
   if (!graph.size)
-    throw new Error('graphology-modularity: the given graph has no edges.');
+    throw new Error('graphology-metrics/modularity: the given graph has no edges.');
 
   // Solving options
   options = defaults({}, options, DEFAULTS);
