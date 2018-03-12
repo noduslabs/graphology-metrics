@@ -8,7 +8,7 @@
     "*.js"
   ],
   "scripts": {
-    "lint": "eslint *.js centrality/*.js test/*.js",
+    "lint": "eslint **/*.js",
     "prepublish": "npm run lint && npm test",
     "test": "mocha test"
   },
@@ -44,8 +44,8 @@
     "@yomguithereal/eslint-config": "^4.0.0",
     "chai": "^4.0.0",
     "eslint": "^4.18.2",
-    "graphology": "^0.11.1",
-    "mocha": "^4.1.0"
+    "graphology": "^0.11.2",
+    "mocha": "^5.0.4"
   },
   "eslintConfig": {
     "extends": "@yomguithereal/eslint-config"
