@@ -12,11 +12,11 @@ var isGraph = require('graphology-utils/is-graph');
  * Intuitively, the degree centrality of a node is the fraction of nodes it
  * is connected to.
  *
- * @param  {boolean} assign       - Whether to assign the result to the nodes.
- * @param  {string} method        - Method of the graph to get the degree.
- * @param  {Graph}  graph         - A graphology instance.
- * @param  {object} [options]     - Options:
- * @param  {string}   [attribute] - Name of the attribute to assign.
+ * @param  {boolean} assign        - Whether to assign the result to the nodes.
+ * @param  {string}  method        - Method of the graph to get the degree.
+ * @param  {Graph}   graph         - A graphology instance.
+ * @param  {object}  [options]     - Options:
+ * @param  {string}    [attribute] - Name of the attribute to assign.
  */
 function abstractDegreeCentrality(assign, method, graph, options) {
   var name = method + 'Centrality';
