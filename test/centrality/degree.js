@@ -1,10 +1,10 @@
 /**
- * Graphology Centrality Unit Tests
- * =================================
+ * Graphology Degree Centrality Unit Tests
+ * ========================================
  */
 var assert = require('chai').assert,
     Graph = require('graphology'),
-    degree = require('../centrality/degree');
+    degree = require('../../centrality/degree');
 
 var UndirectedGraph = Graph.UndirectedGraph,
     DirectedGraph = Graph.DirectedGraph;
