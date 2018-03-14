@@ -67,10 +67,13 @@ function abstractBetweennessCentrality(assign, graph, options) {
       v,
       w;
 
+  // Initializing centralities
+  for (i = 0, l = nodes.length; i < l; i++)
+    centralities[nodes[i]] = 0;
+
   // Iterating over each node
   for (i = 0, l = nodes.length; i < l; i++) {
     node = nodes[i];
-    centralities[node] = 0;
 
     result = shortestPath(graph, node, weightAttribute);
 
@@ -80,6 +83,7 @@ function abstractBetweennessCentrality(assign, graph, options) {
 
     delta = {};
 
+    // Accumulating
     for (j = 0, m = S.length; j < m; j++)
       delta[S[j]] = 0;
 
@@ -99,12 +103,12 @@ function abstractBetweennessCentrality(assign, graph, options) {
 
   // Rescaling
   var n = graph.order,
-      scale;
+      scale = null;
 
   if (normalized)
-    scale = n <= 2 ? null : 1 / ((n - 1) * (n - 2));
+    scale = n <= 2 ? null : (1 / ((n - 1) * (n - 2)));
   else
-    scale = graph.type !== 'undirected' ? 0.5 : null;
+    scale = graph.type === 'undirected' ? 0.5 : null;
 
   if (scale !== null) {
     for (node in centralities)
