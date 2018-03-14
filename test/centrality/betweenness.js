@@ -46,7 +46,7 @@ function getWeightedGraph1() {
   return graph;
 }
 
-function getWeightedGraph2() {
+function getWeightedGraph2(w) {
   var graph = new DirectedGraph();
 
   var edges = [
@@ -63,7 +63,7 @@ function getWeightedGraph2() {
   ];
 
   edges.forEach(function(edge) {
-    graph.mergeEdge(edge[0], edge[1], {weight: edge[2]});
+    graph.mergeEdge(edge[0], edge[1], {[w || 'weight']: edge[2]});
   });
 
   return graph;
@@ -321,6 +321,34 @@ describe('betweenness centrality', function() {
       s: 4,
       u: 2,
       v: 2
+    });
+  });
+
+  it('Assining', function() {
+    var graph = getWeightedGraph2('w');
+
+    betweenness.assign(graph, {
+      normalized: false,
+      weighted: true,
+      attributes: {
+        centrality: 'centrality',
+        weight: 'w'
+      }
+    });
+
+    var test = {
+      y: 5,
+      x: 5,
+      s: 4,
+      u: 2,
+      v: 2
+    };
+
+    graph.nodes().forEach(function(node) {
+      assert.strictEqual(
+        graph.getNodeAttribute(node, 'centrality'),
+        test[node]
+      );
     });
   });
 });

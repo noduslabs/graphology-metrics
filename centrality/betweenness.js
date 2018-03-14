@@ -14,7 +14,7 @@ var isGraph = require('graphology-utils/is-graph'),
  */
 var DEFAULTS = {
   attributes: {
-    centrality: 'centrality',
+    centrality: 'beetweennessCentrality',
     weight: 'weight'
   },
   normalized: true,

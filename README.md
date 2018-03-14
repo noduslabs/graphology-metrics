@@ -21,6 +21,7 @@ npm install graphology-metrics
 *Node metrics*
 
 * [Centrality](#centrality)
+  - [Betweenness centrality](#betweenness-centrality)
   - [Degree centrality](#degree-centrality)
 
 ### Density
@@ -115,6 +116,36 @@ const Q = modularity(graph, {
 
 ### Centrality
 
+#### Betweenness centrality
+
+Computes the betweenness centrality for every node.
+
+```js
+import betweennessCentrality from 'graphology-metrics/centrality/betweenness';
+
+// To compute centrality for every node:
+const centrality = betweennessCentrality(graph);
+
+// To compute weighted betweenness centrality
+const centrality = betweennessCentrality(graph, {weighted: true});
+
+// To directly map the result onto nodes' attributes (`beetweennessCentrality`):
+betweennessCentrality.assign(graph);
+
+// To directly map the result onto a custom attribute:
+betweennessCentrality.assign(graph, {attributes: 'myCentrality'});
+```
+
+*Arguments*
+
+* **graph** *Graph*: target graph.
+* **options** *?object*: options:
+  * **attributes** *?object*: Custom attribute names:
+    - **centrality** *?string* [`betweennessCentrality`]: Name of the centrality attribute to assign.
+    - **weight** *?string*: Name of the weight attribute.
+  * **normalized** *?boolean* [`true`]: should the result be normalized?
+  * **weighted** *?boolean* [`false`]: should we compute the weighted betweenness centrality?
+
 #### Degree centrality
 
 Computes the degree centrality for every node.
@@ -128,8 +159,8 @@ import {
   outDegreeCentrality
 } from 'graphology-metrics/centrality/degree';
 
-// To get centralities for every node:
-const centralities = degreeCentrality(graph);
+// To compute degree centrality for every node:
+const centrality = degreeCentrality(graph);
 
 // To directly map the result onto nodes' attributes (`degreeCentrality`):
 degreeCentrality.assign(graph);
