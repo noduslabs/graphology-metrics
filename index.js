@@ -8,3 +8,4 @@ exports.centrality = require('./centrality');
 exports.density = require('./density.js');
 exports.extent = require('./extent.js');
 exports.modularity = require('./modularity.js');
+exports.weightedSize = require('./weighted-size.js');

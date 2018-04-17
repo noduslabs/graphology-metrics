@@ -17,6 +17,7 @@ npm install graphology-metrics
 * [Density](#density)
 * [Extent](#extent)
 * [Modularity](#modularity)
+* [Weighted size](#weighted-size)
 
 *Node metrics*
 
@@ -113,6 +114,33 @@ const Q = modularity(graph, {
   * **attributes** *?object*: attributes' names:
     * **community** *?string* [`community`]: name of the nodes' community attribute in case we need to read them from the graph itself.
     * **weight** *?string* [`weight`]: name of the edges' weight attribute.
+
+### Weighted size
+
+Computes the weighted size, i.e. the sum of the graph's edges' weight, of the given graph.
+
+```js
+import {weightedSize} from 'graphology-metrics';
+// Alternatively, to load only the relevant code:
+import weightedSize from 'graphology-metrics/weighted-size';
+
+const graph = new Graph();
+graph.mergeEdge(1, 2, {weight: 3});
+graph.mergeEdge(1, 2, {weight: 1});
+
+// Simplest way
+weightedSize(graph);
+>>> 4
+
+// With custom weight attribute
+weightedSize(graph, 'myWeightAttribute');
+>>> 4
+```
+
+*Arguments*
+
+* **graph** *Graph*: target graph.
+* **weightAttribute** *?string* [`weight`]: name of the weight attribute.
 
 ### Centrality
 
