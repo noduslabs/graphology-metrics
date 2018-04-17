@@ -14,9 +14,9 @@ var DEFAULT_WEIGHT_ATTRIBUTE = 'weight';
 /**
  * Weighted size function.
  *
- * @param  {Graph}  graph           - Target graph.
- * @param  {string} weightAttribute - Name of the weight attribute.
- * @return {number} number
+ * @param  {Graph}  graph             - Target graph.
+ * @param  {string} [weightAttribute] - Name of the weight attribute.
+ * @return {number}
  */
 module.exports = function weightedSize(graph, weightAttribute) {
 

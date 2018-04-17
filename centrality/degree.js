@@ -17,6 +17,7 @@ var isGraph = require('graphology-utils/is-graph');
  * @param  {Graph}   graph         - A graphology instance.
  * @param  {object}  [options]     - Options:
  * @param  {string}    [attribute] - Name of the attribute to assign.
+ * @return {object|void}
  */
 function abstractDegreeCentrality(assign, method, graph, options) {
   var name = method + 'Centrality';

@@ -24,6 +24,7 @@ npm install graphology-metrics
 * [Centrality](#centrality)
   - [Betweenness centrality](#betweenness-centrality)
   - [Degree centrality](#degree-centrality)
+* [Weighted degree](#weighted-degree)
 
 ### Density
 
@@ -202,3 +203,50 @@ degreeCentrality.assign(graph, {attribute: 'myCentrality'});
 * **graph** *Graph*: target graph.
 * **options** *?object*: options:
   * **attribute** *?string*: name of the centrality attribute.
+
+### Weighted degree
+
+Computes the weighted degree of nodes. The weighted degree of a node is the sum of its edges' weights.
+
+```js
+import weightedDegree from 'graphology-metrics/weighted-degree';
+// Or to load more specific functions:
+import {
+  weightedDegree,
+  weightedInDegree,
+  weightedOutDegree
+} from 'graphology-metrics/weighted-degree';
+
+// To compute weighted degree of a single node
+weightedDegree(graph, 'A');
+
+// To compute weighted degree of every node
+const weightedDegrees = weightedDegree(graph);
+
+// To compute normalized weighted degree, i.e. weighted degree will be
+// divided by the node's relevant degree
+weightedDegree(graph, 'A', {normalized: true});
+
+// To directly map the result onto node attributes
+weightedDegree.assign(graph);
+```
+
+*Arguments*
+
+To compute the weighted degree of a single node:
+
+* **graph** *Graph*: target graph.
+* **node** *any*: desired node.
+* **options** *?object*: options. See below.
+
+To compute the weighted degree of every node:
+
+* **graph** *Graph*: target graph.
+* **options** *?object*: options. See below.
+
+*Options*
+
+* **attributes** *?object*: custom attribute names:
+  - **weight** *?string* [`weight`]: name of the weight attribute.
+  - **weightedDegree** *?string* [`weightedDegree`]: name of the attribute to assign.
+* **averaged** *?boolean* [`false`]: return averaged weighted degree.
