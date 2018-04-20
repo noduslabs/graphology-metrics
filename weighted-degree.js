@@ -25,7 +25,6 @@ var DEFAULT_WEIGHT_ATTRIBUTE = 'weight';
  * @param  {object}    [attributes]    - Custom attribute names:
  * @param  {string}      [weight]         - Name of the weight attribute.
  * @param  {string}      [weightedDegree] - Name of the attribute to set.
- * @param  {boolean}   [averaged]      - Return averaged weighted degree?
  *
  * Signature n°2 - computing weighted degree for a single node:
  *
@@ -38,7 +37,6 @@ var DEFAULT_WEIGHT_ATTRIBUTE = 'weight';
  * @param  {object}    [attributes]    - Custom attribute names:
  * @param  {string}      [weight]         - Name of the weight attribute.
  * @param  {string}      [weightedDegree] - Name of the attribute to set.
- * @param  {boolean}   [averaged]      - Return averaged weighted degrees?
  *
  * @return {object|void}
  */
@@ -68,8 +66,6 @@ function abstractWeightedDegree(name, assign, edgeGetter, graph, options) {
   var weightAttribute = attributes.weight || DEFAULT_WEIGHT_ATTRIBUTE,
       weightedDegreeAttribute = attributes.weightedDegree || name;
 
-  var averaged = options.averaged === true;
-
   var edges,
       d,
       W,
@@ -88,9 +84,6 @@ function abstractWeightedDegree(name, assign, edgeGetter, graph, options) {
       if (typeof w === 'number')
         d += w;
     }
-
-    if (averaged)
-      d /= l || 1;
 
     if (assign) {
       graph.setNodeAttribute(singleNode, weightedDegreeAttribute, d);
@@ -120,9 +113,6 @@ function abstractWeightedDegree(name, assign, edgeGetter, graph, options) {
       if (typeof w === 'number')
         d += w;
     }
-
-    if (averaged)
-      d /= m || 1;
 
     if (assign)
       graph.setNodeAttribute(node, weightedDegreeAttribute, d);

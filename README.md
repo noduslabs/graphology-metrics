@@ -249,4 +249,3 @@ To compute the weighted degree of every node:
 * **attributes** *?object*: custom attribute names:
   - **weight** *?string* [`weight`]: name of the weight attribute.
   - **weightedDegree** *?string* [`weightedDegree`]: name of the attribute to assign.
-* **averaged** *?boolean* [`false`]: return averaged weighted degree.

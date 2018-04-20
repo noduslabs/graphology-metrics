@@ -95,14 +95,6 @@ describe('weightedDegree', function() {
     });
   });
 
-  it('should be possible to get averaged weighted degree.', function() {
-    var graph = createGraph();
-
-    assert.strictEqual(weightedDegree(graph, 1, {averaged: true}), 10 / 3);
-    assert.strictEqual(weightedDegree.weightedInDegree(graph, 1, {averaged: true}), 2);
-    assert.strictEqual(weightedDegree.weightedOutDegree(graph, 1, {averaged: true}), 4);
-  });
-
   it('should be possible to compute weighted degree for every node.', function() {
     var weightedDegrees = {
       1: 10,
@@ -118,24 +110,6 @@ describe('weightedDegree', function() {
 
     var weightedOutDegrees = {
       1: 8,
-      2: 0,
-      3: 2
-    };
-
-    var weightedDegreesAveraged = {
-      1: 10 / 3,
-      2: 3,
-      3: 3.5
-    };
-
-    var weightedInDegreesAveraged = {
-      1: 2,
-      2: 3,
-      3: 5
-    };
-
-    var weightedOutDegreesAveraged = {
-      1: 4,
       2: 0,
       3: 2
     };
@@ -157,23 +131,5 @@ describe('weightedDegree', function() {
     assert.deepEqual(weightedDegree.weightedOutDegree(graph), weightedOutDegrees);
     weightedDegree.weightedOutDegree.assign(graph);
     assert.deepEqual(collect(graph, 'weightedOutDegree'), weightedOutDegrees);
-
-    graph = createGraph('w');
-
-    assert.deepEqual(weightedDegree(graph, {averaged: true, attributes: {weight: 'w', weightedDegree: 'wd'}}), weightedDegreesAveraged);
-    weightedDegree.assign(graph, {averaged: true, attributes: {weight: 'w', weightedDegree: 'wd'}});
-    assert.deepEqual(collect(graph, 'wd'), weightedDegreesAveraged);
-
-    graph = createGraph('w');
-
-    assert.deepEqual(weightedDegree.weightedInDegree(graph, {averaged: true, attributes: {weight: 'w', weightedDegree: 'wd'}}), weightedInDegreesAveraged);
-    weightedDegree.weightedInDegree.assign(graph, {averaged: true, attributes: {weight: 'w', weightedDegree: 'wd'}});
-    assert.deepEqual(collect(graph, 'wd'), weightedInDegreesAveraged);
-
-    graph = createGraph('w');
-
-    assert.deepEqual(weightedDegree.weightedOutDegree(graph, {averaged: true, attributes: {weight: 'w', weightedDegree: 'wd'}}), weightedOutDegreesAveraged);
-    weightedDegree.weightedOutDegree.assign(graph, {averaged: true, attributes: {weight: 'w', weightedDegree: 'wd'}});
-    assert.deepEqual(collect(graph, 'wd'), weightedOutDegreesAveraged);
   });
 });
