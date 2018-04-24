@@ -125,7 +125,7 @@ describe('degree centrality', function() {
   it('should be possible to give a custom attribute name.', function() {
     var graph = getBasicGraph();
 
-    degree.degreeCentrality.assign(graph, {attribute: 'centrality'});
+    degree.degreeCentrality.assign(graph, {attributes: {centrality: 'centrality'}});
     assert.deepEqual(collect(graph, 'centrality'), GRAPHS.basic.degreeCentrality);
   });
 });

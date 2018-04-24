@@ -195,14 +195,17 @@ const centrality = degreeCentrality(graph);
 degreeCentrality.assign(graph);
 
 // To directly map the result onto a custom attribute:
-degreeCentrality.assign(graph, {attribute: 'myCentrality'});
+degreeCentrality.assign(graph, {attributes: {centrality: 'myCentrality'}});
 ```
 
 *Arguments*
 
 * **graph** *Graph*: target graph.
 * **options** *?object*: options:
-  * **attribute** *?string*: name of the centrality attribute.
+  * **attributes** *?object*: custom attribute names:
+    * **centrality** *?string* [`degreeCentrality`]: name of the centrality attribute to assign.
+    * **weight** *?string* [`weight`]: name of the weight attribute.
+  * **weighted** *?boolean* [`false`]: compute weighted degree centrality?
 
 ### Weighted degree
 

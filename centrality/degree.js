@@ -7,16 +7,24 @@
 var isGraph = require('graphology-utils/is-graph');
 
 /**
+ * Defaults.
+ */
+// var DEFAULT_WEIGHT_ATTRIBUTE = 'weight';
+
+/**
  * Asbtract function to perform any kind of degree centrality.
  *
  * Intuitively, the degree centrality of a node is the fraction of nodes it
  * is connected to.
  *
- * @param  {boolean} assign        - Whether to assign the result to the nodes.
- * @param  {string}  method        - Method of the graph to get the degree.
- * @param  {Graph}   graph         - A graphology instance.
- * @param  {object}  [options]     - Options:
- * @param  {string}    [attribute] - Name of the attribute to assign.
+ * @param  {boolean} assign           - Whether to assign the result to the nodes.
+ * @param  {string}  method           - Method of the graph to get the degree.
+ * @param  {Graph}   graph            - A graphology instance.
+ * @param  {object}  [options]        - Options:
+ * @param  {object}    [attributes]   - Custom attribute names:
+ * @param  {string}      [centrality] - Name of the attribute to assign.
+ * @param  {string}      [weight]     - Name of the weight attribute.
+ * @param  {boolean}   [weighted]     - Should we compute weighted degree centrality?
  * @return {object|void}
  */
 function abstractDegreeCentrality(assign, method, graph, options) {
@@ -31,7 +39,9 @@ function abstractDegreeCentrality(assign, method, graph, options) {
   // Solving options
   options = options || {};
 
-  var attribute = options.attribute || name;
+  var attributes = options.attributes || {};
+
+  var centralityAttribute = attributes.centrality || name;
 
   // Variables
   var order = graph.order,
@@ -54,7 +64,7 @@ function abstractDegreeCentrality(assign, method, graph, options) {
     centrality = getDegree(node) * s;
 
     if (assign)
-      graph.setNodeAttribute(node, attribute, centrality);
+      graph.setNodeAttribute(node, centralityAttribute, centrality);
     else
       centralities[node] = centrality;
   }
