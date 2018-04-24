@@ -7,11 +7,6 @@
 var isGraph = require('graphology-utils/is-graph');
 
 /**
- * Defaults.
- */
-// var DEFAULT_WEIGHT_ATTRIBUTE = 'weight';
-
-/**
  * Asbtract function to perform any kind of degree centrality.
  *
  * Intuitively, the degree centrality of a node is the fraction of nodes it
@@ -23,8 +18,6 @@ var isGraph = require('graphology-utils/is-graph');
  * @param  {object}  [options]        - Options:
  * @param  {object}    [attributes]   - Custom attribute names:
  * @param  {string}      [centrality] - Name of the attribute to assign.
- * @param  {string}      [weight]     - Name of the weight attribute.
- * @param  {boolean}   [weighted]     - Should we compute weighted degree centrality?
  * @return {object|void}
  */
 function abstractDegreeCentrality(assign, method, graph, options) {

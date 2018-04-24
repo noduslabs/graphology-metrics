@@ -204,8 +204,6 @@ degreeCentrality.assign(graph, {attributes: {centrality: 'myCentrality'}});
 * **options** *?object*: options:
   * **attributes** *?object*: custom attribute names:
     * **centrality** *?string* [`degreeCentrality`]: name of the centrality attribute to assign.
-    * **weight** *?string* [`weight`]: name of the weight attribute.
-  * **weighted** *?boolean* [`false`]: compute weighted degree centrality?
 
 ### Weighted degree
 
