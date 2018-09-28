@@ -42,18 +42,18 @@
   "homepage": "https://github.com/graphology/graphology-metrics#readme",
   "devDependencies": {
     "@yomguithereal/eslint-config": "^4.0.0",
-    "chai": "^4.0.0",
+    "chai": "^4.2.0",
     "eslint": "^4.18.2",
-    "graphology": "^0.11.2",
+    "graphology": "^0.13.1",
     "graphology-generators": "^0.9.0",
-    "mocha": "^5.0.4"
+    "mocha": "^5.2.0"
   },
   "eslintConfig": {
     "extends": "@yomguithereal/eslint-config"
   },
   "dependencies": {
     "graphology-shortest-path": "^1.0.1",
-    "graphology-utils": "^1.3.0",
-    "lodash": "^4.17.5"
+    "graphology-utils": "^1.3.1",
+    "lodash": "^4.17.11"
   }
 }

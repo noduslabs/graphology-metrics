@@ -25,26 +25,26 @@ describe('density', function() {
 
   it('should properly compute the given graph\'s density.', function() {
     var mixedGraph = new Graph();
-    mixedGraph.addNodesFrom([1, 2, 3]);
-    mixedGraph.addEdge(1, 2);
-    mixedGraph.addEdge(1, 3);
+
+    mixedGraph.mergeEdge(1, 2);
+    mixedGraph.mergeEdge(1, 3);
 
     var directedGraph = new Graph({type: 'directed'});
-    directedGraph.addNodesFrom([1, 2, 3]);
-    directedGraph.addEdge(1, 2);
-    directedGraph.addEdge(1, 3);
+
+    directedGraph.mergeEdge(1, 2);
+    directedGraph.mergeEdge(1, 3);
 
     var undirectedGraph = new Graph({type: 'undirected'});
-    undirectedGraph.addNodesFrom([1, 2, 3]);
-    undirectedGraph.addEdge(1, 2);
-    undirectedGraph.addEdge(1, 3);
+
+    undirectedGraph.mergeEdge(1, 2);
+    undirectedGraph.mergeEdge(1, 3);
 
     var multiGraph = new Graph({type: 'undirected', multi: true});
-    multiGraph.addNodesFrom([1, 2, 3]);
-    multiGraph.addEdge(1, 2);
-    multiGraph.addEdge(1, 3);
-    multiGraph.addEdge(1, 3);
-    multiGraph.addEdge(1, 3);
+
+    multiGraph.mergeEdge(1, 2);
+    multiGraph.mergeEdge(1, 3);
+    multiGraph.mergeEdge(1, 3);
+    multiGraph.mergeEdge(1, 3);
 
     assert.strictEqual(density(mixedGraph), 2 / 9);
     assert.strictEqual(density(directedGraph), 2 / 6);

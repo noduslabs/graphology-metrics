@@ -62,7 +62,9 @@ describe('degree centrality', function() {
   function getBasicGraph() {
     var graph = new DirectedGraph();
 
-    graph.addNodesFrom(GRAPHS.basic.nodes);
+    GRAPHS.basic.nodes.forEach(function(node) {
+      graph.addNode(node);
+    });
 
     GRAPHS.basic.edges.forEach(function(edge) {
       graph.addEdge.apply(graph, edge);

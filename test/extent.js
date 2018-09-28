@@ -9,7 +9,7 @@ var assert = require('chai').assert,
 describe('extent', function() {
   var graph = new Graph();
 
-  graph.addNodesFrom({
+  var data = {
     one: {
       x: 34,
       y: -12,
@@ -25,7 +25,10 @@ describe('extent', function() {
       y: 22,
       size: 1
     }
-  });
+  };
+
+  for (var node in data)
+    graph.addNode(node, data[node]);
 
   graph.addEdge('one', 'two', {
     size: 2,

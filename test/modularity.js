@@ -64,7 +64,8 @@ describe('modularity', function() {
 
   it('should throw if the given graph has no edges.', function() {
     var graph = new Graph();
-    graph.addNodesFrom([1, 2]);
+    graph.addNode(1);
+    graph.addNode(2);
 
     assert.throws(function() {
       modularity(graph, [[1], [2]]);
@@ -73,10 +74,9 @@ describe('modularity', function() {
 
   it('should throw if a node is not in the given partition.', function() {
     var graph = new Graph();
-    graph.addNodesFrom([1, 2, 3]);
-    graph.addUndirectedEdge(1, 2);
-    graph.addUndirectedEdge(1, 3);
-    graph.addUndirectedEdge(2, 3);
+    graph.mergeUndirectedEdge(1, 2);
+    graph.mergeUndirectedEdge(1, 3);
+    graph.mergeUndirectedEdge(2, 3);
 
     assert.throws(function() {
       modularity(graph, {communities: {1: 0, 2: 0}});
@@ -85,40 +85,37 @@ describe('modularity', function() {
 
   it('should handle unique partitions of cliques.', function() {
     var graph = new Graph();
-    graph.addNodesFrom([1, 2, 3]);
-    graph.addUndirectedEdge(1, 2);
-    graph.addUndirectedEdge(1, 3);
-    graph.addUndirectedEdge(2, 3);
+    graph.mergeUndirectedEdge(1, 2);
+    graph.mergeUndirectedEdge(1, 3);
+    graph.mergeUndirectedEdge(2, 3);
 
     assert.closeTo(modularity(graph, {communities: {1: 0, 2: 0, 3: 0}}), 0, 0.01);
   });
 
   it('should handle tiny weighted graphs (5 nodes).', function() {
     var graph = new Graph();
-    graph.addNodesFrom([1, 2, 3, 4, 5]);
 
-    graph.addUndirectedEdge(1, 2, {weight: 30});
-    graph.addUndirectedEdge(1, 5);
-    graph.addUndirectedEdge(2, 3, {weight: 15});
-    graph.addUndirectedEdge(2, 4, {weight: 10});
-    graph.addUndirectedEdge(2, 5);
-    graph.addUndirectedEdge(3, 4, {weight: 5});
-    graph.addUndirectedEdge(4, 5, {weight: 100});
+    graph.mergeUndirectedEdge(1, 2, {weight: 30});
+    graph.mergeUndirectedEdge(1, 5);
+    graph.mergeUndirectedEdge(2, 3, {weight: 15});
+    graph.mergeUndirectedEdge(2, 4, {weight: 10});
+    graph.mergeUndirectedEdge(2, 5);
+    graph.mergeUndirectedEdge(3, 4, {weight: 5});
+    graph.mergeUndirectedEdge(4, 5, {weight: 100});
 
     assert.closeTo(modularity(graph, {communities: {1: 0, 2: 0, 3: 0, 4: 1, 5: 1}}), 0.337, 0.01);
   });
 
   it('should be possible to indicate the weight attribute name.', function() {
     var graph = new Graph();
-    graph.addNodesFrom([1, 2, 3, 4, 5]);
 
-    graph.addUndirectedEdge(1, 2, {customWeight: 30});
-    graph.addUndirectedEdge(1, 5);
-    graph.addUndirectedEdge(2, 3, {customWeight: 15});
-    graph.addUndirectedEdge(2, 4, {customWeight: 10});
-    graph.addUndirectedEdge(2, 5);
-    graph.addUndirectedEdge(3, 4, {customWeight: 5});
-    graph.addUndirectedEdge(4, 5, {customWeight: 100});
+    graph.mergeUndirectedEdge(1, 2, {customWeight: 30});
+    graph.mergeUndirectedEdge(1, 5);
+    graph.mergeUndirectedEdge(2, 3, {customWeight: 15});
+    graph.mergeUndirectedEdge(2, 4, {customWeight: 10});
+    graph.mergeUndirectedEdge(2, 5);
+    graph.mergeUndirectedEdge(3, 4, {customWeight: 5});
+    graph.mergeUndirectedEdge(4, 5, {customWeight: 100});
 
     var options = {
       attributes: {
@@ -133,7 +130,7 @@ describe('modularity', function() {
   it('should be possible to read the communities from the graph', function() {
     var graph = new Graph();
 
-    graph.addNodesFrom({
+    var data = {
       1: {
         community: 0
       },
@@ -149,7 +146,10 @@ describe('modularity', function() {
       5: {
         community: 1
       }
-    });
+    };
+
+    for (var node in data)
+      graph.addNode(node, data[node]);
 
     graph.addUndirectedEdge(1, 2, {weight: 30});
     graph.addUndirectedEdge(1, 5);
@@ -164,13 +164,13 @@ describe('modularity', function() {
 
   it('should handle tiny directed graphs (5 nodes).', function() {
     var graph = new Graph({type: 'directed'});
-    graph.addNodesFrom([1, 2, 3, 4, 5]);
-    graph.addDirectedEdge(1, 2);
-    graph.addDirectedEdge(1, 5);
-    graph.addDirectedEdge(2, 3);
-    graph.addDirectedEdge(3, 4);
-    graph.addDirectedEdge(4, 2);
-    graph.addDirectedEdge(5, 1);
+
+    graph.mergeDirectedEdge(1, 2);
+    graph.mergeDirectedEdge(1, 5);
+    graph.mergeDirectedEdge(2, 3);
+    graph.mergeDirectedEdge(3, 4);
+    graph.mergeDirectedEdge(4, 2);
+    graph.mergeDirectedEdge(5, 1);
 
     assert.closeTo(modularity(graph, {communities: {1: 0, 5: 0, 2: 1, 3: 1, 4: 1}}), 0.22, 0.01);
   });

@@ -8,7 +8,7 @@
  *
  * Directed edges produces the same modularity as if they were undirected
  *   - if there are a->b and b->a : consider a<->b
- *   - if there is a-> only or b->a only : consider ALSO a<->b
+ *   - if there is a->b only or b->a only : consider ALSO a<->b
  *   - if there are a->b , b->a with differents weights, only one is considered
  *
  * The order chosen by Gephi is unknown, it is a sensitive case and is not
